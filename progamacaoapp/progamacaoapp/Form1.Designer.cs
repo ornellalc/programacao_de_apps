@@ -247,6 +247,7 @@
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.Size = new Size(348, 217);
             dataGridView1.TabIndex = 22;
+            dataGridView1.CellClick += dataGridView1_CellClick;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // txtpesquisar

@@ -37,15 +37,15 @@ namespace progamacaoapp
 
         private void btneditar_Click(object sender, EventArgs e)
         {
-            conexao com= new conexao();
+            conexao com = new conexao();
             com.getConexao();
-            financeiro financeiro = new financeiro();   
-            financeiro.id=Convert.ToInt32(txtcodigo.Text);
-            financeiro.descricao=txtdescricao.Text;
-            financeiro.servico=cboservico.Text;
-            financeiro.tipo=cbotipo.Text;
-            financeiro.valor=decimal.Parse(txtvalor.Text); 
-            financeiro.pgto=chkpagamento.Checked;
+            financeiro financeiro = new financeiro();
+            financeiro.id = Convert.ToInt32(txtcodigo.Text);
+            financeiro.descricao = txtdescricao.Text;
+            financeiro.servico = cboservico.Text;
+            financeiro.tipo = cbotipo.Text;
+            financeiro.valor = decimal.Parse(txtvalor.Text);
+            financeiro.pgto = chkpagamento.Checked;
             financeiro.data_lancamento = data_lancamento.Value;
             if (financeiro.editar(com) == true)
             {
@@ -72,23 +72,6 @@ namespace progamacaoapp
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            int codigo = 0;
-            codigo = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value);
-            txtcodigo.Text = codigo.ToString();
-            txtdescricao.Text = dataGridView1.Rows[e.RowIndex].Cells["descrição"].Value.ToString();
-            txtvalor.Text = dataGridView1.Rows[e.RowIndex].Cells["valor"].Value.ToString();
-            cboservico.Text = dataGridView1.Rows[e.RowIndex].Cells["serviço"].Value.ToString();
-            cbotipo.Text = dataGridView1.Rows[e.RowIndex].Cells["Tipo"].Value.ToString();
-            data_lancamento.Value =(DateTime)dataGridView1.Rows[e.RowIndex].Cells["data_lancamento"].Value;
-            bool pago=Convert.ToBoolean(dataGridView1.Rows[e.RowIndex].Cells["pgto"].Value.ToString() );
-            if (pago == true)
-            {
-                chkpagamento.Checked = true;
-            }
-            else
-            {
-                chkpagamento.Checked = false;
-            }
 
 
 
@@ -105,6 +88,28 @@ namespace progamacaoapp
             cbotipo.Items.Add("saida");
 
 
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            int codigo = 0;
+            codigo = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value);
+            txtcodigo.Text = codigo.ToString();
+            txtdescricao.Text = dataGridView1.Rows[e.RowIndex].Cells["descricao"].Value.ToString();
+            txtvalor.Text = dataGridView1.Rows[e.RowIndex].Cells["valor"].Value.ToString();
+            cboservico.Text = dataGridView1.Rows[e.RowIndex].Cells["servico"].Value.ToString();
+            cbotipo.Text = dataGridView1.Rows[e.RowIndex].Cells["tipo"].Value.ToString();
+            data_lancamento.Value = (DateTime)dataGridView1.Rows[e.RowIndex].Cells["data_lancamento"].Value;
+            bool pago = Convert.ToBoolean(dataGridView1.Rows[e.RowIndex].Cells["pgto"].Value.ToString());
+            if (pago == true)
+            {
+                chkpagamento.Checked = true;
+            }
+            else
+            {
+                chkpagamento.Checked = false;
+            }
         }
     }
 }
