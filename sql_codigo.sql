@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS `gerenciamento`.`financeiro` (
   `valor` DECIMAL(5,2) NULL,
   `tipo` VARCHAR(45) NULL,
   `servico` VARCHAR(45) NULL,
-`data_lacamento` date NULL,
+`data_lancamento` date NULL,
   `pgto` boolean NULL,
 
   PRIMARY KEY (`cod_financeiro`))

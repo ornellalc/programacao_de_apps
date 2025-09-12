@@ -40,7 +40,7 @@
             txtvalor = new TextBox();
             cboservico = new ComboBox();
             chkpagamento = new CheckBox();
-            data_lacamento = new DateTimePicker();
+            data_lancamento = new DateTimePicker();
             cbotipo = new ComboBox();
             btneditar = new Button();
             btncadastrar = new Button();
@@ -55,7 +55,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(47, 57);
+            label1.Location = new Point(46, 49);
             label1.Name = "label1";
             label1.Size = new Size(58, 20);
             label1.TabIndex = 0;
@@ -117,6 +117,7 @@
             // 
             // txtcodigo
             // 
+            txtcodigo.BackColor = SystemColors.HighlightText;
             txtcodigo.Location = new Point(138, 49);
             txtcodigo.Name = "txtcodigo";
             txtcodigo.Size = new Size(125, 27);
@@ -124,6 +125,7 @@
             // 
             // txtdescricao
             // 
+            txtdescricao.BackColor = SystemColors.HighlightText;
             txtdescricao.Location = new Point(138, 91);
             txtdescricao.Name = "txtdescricao";
             txtdescricao.Size = new Size(125, 27);
@@ -131,10 +133,12 @@
             // 
             // txtvalor
             // 
+            txtvalor.BackColor = SystemColors.HighlightText;
             txtvalor.Location = new Point(138, 132);
             txtvalor.Name = "txtvalor";
             txtvalor.Size = new Size(125, 27);
             txtvalor.TabIndex = 9;
+            txtvalor.TextChanged += txtvalor_TextChanged;
             // 
             // cboservico
             // 
@@ -154,12 +158,12 @@
             chkpagamento.Text = "checkBox1";
             chkpagamento.UseVisualStyleBackColor = true;
             // 
-            // data_lacamento
+            // data_lancamento
             // 
-            data_lacamento.Location = new Point(138, 282);
-            data_lacamento.Name = "data_lacamento";
-            data_lacamento.Size = new Size(250, 27);
-            data_lacamento.TabIndex = 15;
+            data_lancamento.Location = new Point(138, 282);
+            data_lancamento.Name = "data_lancamento";
+            data_lancamento.Size = new Size(250, 27);
+            data_lancamento.TabIndex = 15;
             // 
             // cbotipo
             // 
@@ -171,36 +175,50 @@
             // 
             // btneditar
             // 
+            btneditar.BackColor = Color.PaleVioletRed;
+            btneditar.Cursor = Cursors.Hand;
+            btneditar.FlatStyle = FlatStyle.Flat;
+            btneditar.ForeColor = SystemColors.InactiveBorder;
             btneditar.Location = new Point(178, 381);
             btneditar.Name = "btneditar";
             btneditar.Size = new Size(94, 29);
             btneditar.TabIndex = 17;
             btneditar.Text = "Editar";
-            btneditar.UseVisualStyleBackColor = true;
+            btneditar.UseVisualStyleBackColor = false;
+            btneditar.Click += btneditar_Click;
             // 
             // btncadastrar
             // 
+            btncadastrar.BackColor = Color.PaleVioletRed;
+            btncadastrar.Cursor = Cursors.Hand;
+            btncadastrar.FlatStyle = FlatStyle.Flat;
+            btncadastrar.ForeColor = SystemColors.InactiveBorder;
             btncadastrar.Location = new Point(47, 381);
             btncadastrar.Name = "btncadastrar";
             btncadastrar.Size = new Size(94, 29);
             btncadastrar.TabIndex = 18;
             btncadastrar.Text = "Cadastrar";
-            btncadastrar.UseVisualStyleBackColor = true;
+            btncadastrar.UseVisualStyleBackColor = false;
             btncadastrar.Click += btncadastrar_Click;
             // 
             // btnexcluir
             // 
+            btnexcluir.BackColor = Color.PaleVioletRed;
+            btnexcluir.Cursor = Cursors.Hand;
+            btnexcluir.FlatStyle = FlatStyle.Flat;
+            btnexcluir.ForeColor = SystemColors.InactiveBorder;
             btnexcluir.Location = new Point(310, 381);
             btnexcluir.Name = "btnexcluir";
             btnexcluir.Size = new Size(94, 29);
             btnexcluir.TabIndex = 19;
             btnexcluir.Text = "Excluir";
-            btnexcluir.UseVisualStyleBackColor = true;
+            btnexcluir.UseVisualStyleBackColor = false;
+            btnexcluir.Click += btnexcluir_Click;
             // 
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(424, 33);
+            label8.Location = new Point(521, 45);
             label8.Name = "label8";
             label8.Size = new Size(70, 20);
             label8.TabIndex = 20;
@@ -208,34 +226,43 @@
             // 
             // btnpesquisar
             // 
-            btnpesquisar.Location = new Point(658, 31);
+            btnpesquisar.BackColor = Color.PaleVioletRed;
+            btnpesquisar.Cursor = Cursors.Hand;
+            btnpesquisar.FlatStyle = FlatStyle.Flat;
+            btnpesquisar.ForeColor = SystemColors.InactiveBorder;
+            btnpesquisar.Location = new Point(755, 43);
             btnpesquisar.Name = "btnpesquisar";
             btnpesquisar.Size = new Size(94, 29);
             btnpesquisar.TabIndex = 21;
             btnpesquisar.Text = "Buscar";
-            btnpesquisar.UseVisualStyleBackColor = true;
+            btnpesquisar.UseVisualStyleBackColor = false;
+            btnpesquisar.Click += btnpesquisar_Click;
             // 
             // dataGridView1
             // 
+            dataGridView1.BackgroundColor = Color.DeepPink;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(424, 92);
+            dataGridView1.Location = new Point(521, 104);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.Size = new Size(348, 217);
             dataGridView1.TabIndex = 22;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // txtpesquisar
             // 
-            txtpesquisar.Location = new Point(509, 30);
+            txtpesquisar.Location = new Point(606, 42);
             txtpesquisar.Name = "txtpesquisar";
             txtpesquisar.Size = new Size(125, 27);
             txtpesquisar.TabIndex = 23;
+            txtpesquisar.TextChanged += txtpesquisar_TextChanged;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            BackColor = Color.LavenderBlush;
+            ClientSize = new Size(934, 530);
             Controls.Add(txtpesquisar);
             Controls.Add(dataGridView1);
             Controls.Add(btnpesquisar);
@@ -244,7 +271,7 @@
             Controls.Add(btncadastrar);
             Controls.Add(btneditar);
             Controls.Add(cbotipo);
-            Controls.Add(data_lacamento);
+            Controls.Add(data_lancamento);
             Controls.Add(chkpagamento);
             Controls.Add(cboservico);
             Controls.Add(txtvalor);
@@ -259,7 +286,7 @@
             Controls.Add(label1);
             Name = "Form1";
             Text = "Form1";
-           
+            Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -279,7 +306,7 @@
         private TextBox txtvalor;
         private ComboBox cboservico;
         private CheckBox chkpagamento;
-        private DateTimePicker data_lacamento;
+        private DateTimePicker data_lancamento;
         private ComboBox cbotipo;
         private Button btneditar;
         private Button btncadastrar;
