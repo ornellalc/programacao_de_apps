@@ -50,7 +50,7 @@ ENGINE = InnoDB;
 -- Table `gerenciamento`.`financeiro`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `gerenciamento`.`financeiro` (
-  `cod_financeiro` INT NOT NULL,
+  `cod_financeiro` INT NOT NULL auto_increment,
   `descricao` VARCHAR(45) NULL,
   `valor` DECIMAL(5,2) NULL,
   `tipo` VARCHAR(45) NULL,

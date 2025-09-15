@@ -57,7 +57,15 @@ namespace progamacaoapp
 
         private void btnexcluir_Click(object sender, EventArgs e)
         {
-
+            conexao conexao = new conexao();
+            conexao.getConexao();
+            financeiro financeiro = new financeiro();
+            financeiro.id = Convert.ToInt32(txtcodigo.Text) ;
+            if (financeiro.excluir(conexao) == true)
+            {
+                MessageBox.Show("Excluido com sucesso!!");
+                dataGridView1.Refresh();
+            }
         }
 
         private void txtpesquisar_TextChanged(object sender, EventArgs e)
@@ -67,6 +75,16 @@ namespace progamacaoapp
 
         private void btnpesquisar_Click(object sender, EventArgs e)
         {
+            conexao com = new conexao();
+            com.getConexao();
+            if (string.IsNullOrEmpty(txtpesquisar.Text) )
+            {
+                dataGridView1.DataSource = com.obterdados("select * from financeiro");
+            }
+            else
+            {
+               dataGridView1.DataSource = com.obterdados("select * from financeiro where descricao like %'"+txtpesquisar.Text+"'%");
+            }
 
         }
 

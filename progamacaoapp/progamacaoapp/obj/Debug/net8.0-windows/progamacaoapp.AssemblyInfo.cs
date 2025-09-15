@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("progamacaoapp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+495df1c5050c459e46765e090bb983cf2f9fab2a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4ca0fd281ce9aa8e205e98ab547a7746242c9042")]
 [assembly: System.Reflection.AssemblyProductAttribute("progamacaoapp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("progamacaoapp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
