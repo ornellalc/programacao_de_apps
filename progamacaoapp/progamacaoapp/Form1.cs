@@ -60,7 +60,7 @@ namespace progamacaoapp
             conexao conexao = new conexao();
             conexao.getConexao();
             financeiro financeiro = new financeiro();
-            financeiro.id = Convert.ToInt32(txtcodigo.Text) ;
+            financeiro.id = Convert.ToInt32(txtcodigo.Text);
             if (financeiro.excluir(conexao) == true)
             {
                 MessageBox.Show("Excluido com sucesso!!");
@@ -77,13 +77,13 @@ namespace progamacaoapp
         {
             conexao com = new conexao();
             com.getConexao();
-            if (string.IsNullOrEmpty(txtpesquisar.Text) )
+            if (string.IsNullOrEmpty(txtpesquisar.Text))
             {
                 dataGridView1.DataSource = com.obterdados("select * from financeiro");
             }
             else
             {
-               dataGridView1.DataSource = com.obterdados("select * from financeiro where descricao like %'"+txtpesquisar.Text+"'%");
+                dataGridView1.DataSource = com.obterdados("select * from financeiro where descricao like %'" + txtpesquisar.Text + "'%");
             }
 
         }
@@ -128,6 +128,12 @@ namespace progamacaoapp
             {
                 chkpagamento.Checked = false;
             }
+        }
+
+        private void btnrelatorio_Click(object sender, EventArgs e)
+        {
+            Form2 relatorio = new Form2();
+            relatorio.ShowDialog();
         }
     }
 }
