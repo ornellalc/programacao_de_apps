@@ -59,16 +59,17 @@
             // 
             // btnpdf
             // 
-            btnpdf.BackColor = Color.Plum;
+            btnpdf.BackColor = Color.DeepPink;
             btnpdf.Cursor = Cursors.Hand;
             btnpdf.FlatStyle = FlatStyle.Flat;
-            btnpdf.ForeColor = Color.Purple;
+            btnpdf.ForeColor = Color.LavenderBlush;
             btnpdf.Location = new Point(286, 203);
             btnpdf.Name = "btnpdf";
             btnpdf.Size = new Size(119, 36);
             btnpdf.TabIndex = 2;
             btnpdf.Text = "Gerar PDF";
             btnpdf.UseVisualStyleBackColor = false;
+            btnpdf.Click += btnpdf_Click;
             // 
             // btngrafico
             // 

@@ -83,7 +83,7 @@ namespace progamacaoapp
             }
             else
             {
-                dataGridView1.DataSource = com.obterdados("select * from financeiro where descricao like %'" + txtpesquisar.Text + "'%");
+                dataGridView1.DataSource = com.obterdados("select * from financeiro where descricao like '%" + txtpesquisar.Text + "%'");
             }
 
         }
