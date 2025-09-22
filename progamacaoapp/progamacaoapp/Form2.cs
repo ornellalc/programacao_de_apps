@@ -19,6 +19,10 @@ using iTextSharp.text;
 using System.Net.Http.Json;
 using System.Diagnostics;
 using Document = iTextSharp.text.Document;
+using System.Windows.Forms.DataVisualization.Charting;
+using System.Drawing.Text;
+using Org.BouncyCastle.Crypto;
+
 
 
 
@@ -30,6 +34,72 @@ namespace progamacaoapp
         {
             InitializeComponent();
         }
+
+
+        private void ConfigureChart()
+        {
+            fluxocaixa.Titles.Clear();
+            fluxocaixa.Series.Clear();
+            fluxocaixa.ChartAreas.Clear();
+
+            ChartArea chartArea = new ChartArea("MainArea");
+            fluxocaixa.Chartareas.Add(chartArea);
+
+            chartArea.AxisX.MajorGrid.Enabled = false;
+            chartArea.AxisY.MajorGrid.LineColor = Color.Aquamarine;
+            chartArea.AxisY.LabelStyle.Format = "C2";
+            chartArea.AxisY.Title = "Valor (R$)";
+            chartArea.AxisX.Title = "Período";
+
+            Series seriesEntrada = new Series("Entrada");
+            seriesEntrada.ChartType = SeriesChartType.Column;
+            seriesEntrada.Color = Color.Blue;
+            seriesEntrada.IsValueShownAsLabel = true;
+            seriesEntrada.LabelFormat = "C2";
+            fluxocaixa.Series.Add(seriesEntrada);
+        }
+
+        private void GerarRelatorio()
+        {
+            DataTable dtMoviemntacao = new DataTable();
+
+
+
+            conexao com = new conexao();
+            try
+            {
+                com.getConexao();
+                string query = "Select data_lancamento,valor,tipo from financeiro";
+
+                MySqlDataAdapter adapter = new MySqlDataAdapter(query, com);
+                adapter.fill(dtMoviemntacao);
+
+                ProcessarDadosGraficos(dtMoviemntacao);
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao gerar relatório");
+            }
+        }
+
+        private void ProcessarDadosGraficos(DataTable dados)
+        {
+            foreach (var series in fluxocaixa.Series)
+            {
+                series.Points.Clear();
+            }
+            var grupos = dados.AsEnumerable().GroupBy(row =>
+            {
+                DateTime data = row.Field<DateTime>("data_lancamento");
+            }).OrderBy(global +> global.Key);
+            fluxocaixa.ChartAreas["MainArea"].AxisX.LabelStyle.Format = "dd/mm";
+            decimal entradas = grupos.Where(r=> r.Field<string>("Tipo") == "Entrada").Sum(r=> r.field<decimal>("valor"));
+            fluxocaixa.Series["Entradas"].Points.AddXY(Label, entrada);
+
+        }
+
 
         private void btnexcel_Click(object sender, EventArgs e)
         {

@@ -28,10 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             btnexcel = new Button();
             label1 = new Label();
             btnpdf = new Button();
             btngrafico = new Button();
+            fluxocaixa = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            ((System.ComponentModel.ISupportInitialize)fluxocaixa).BeginInit();
             SuspendLayout();
             // 
             // btnexcel
@@ -39,7 +44,7 @@
             btnexcel.BackColor = Color.Chartreuse;
             btnexcel.FlatStyle = FlatStyle.Flat;
             btnexcel.ForeColor = Color.DarkOliveGreen;
-            btnexcel.Location = new Point(77, 203);
+            btnexcel.Location = new Point(37, 102);
             btnexcel.Name = "btnexcel";
             btnexcel.Size = new Size(119, 36);
             btnexcel.TabIndex = 0;
@@ -51,7 +56,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Dubai Medium", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(73, 149);
+            label1.Location = new Point(33, 48);
             label1.Name = "label1";
             label1.Size = new Size(546, 34);
             label1.TabIndex = 1;
@@ -63,7 +68,7 @@
             btnpdf.Cursor = Cursors.Hand;
             btnpdf.FlatStyle = FlatStyle.Flat;
             btnpdf.ForeColor = Color.LavenderBlush;
-            btnpdf.Location = new Point(286, 203);
+            btnpdf.Location = new Point(246, 102);
             btnpdf.Name = "btnpdf";
             btnpdf.Size = new Size(119, 36);
             btnpdf.TabIndex = 2;
@@ -77,12 +82,28 @@
             btngrafico.Cursor = Cursors.Hand;
             btngrafico.FlatStyle = FlatStyle.Flat;
             btngrafico.ForeColor = Color.MidnightBlue;
-            btngrafico.Location = new Point(500, 203);
+            btngrafico.Location = new Point(460, 102);
             btngrafico.Name = "btngrafico";
             btngrafico.Size = new Size(119, 36);
             btngrafico.TabIndex = 3;
             btngrafico.Text = "Gerar Gráfico";
             btngrafico.UseVisualStyleBackColor = false;
+            // 
+            // fluxocaixa
+            // 
+            chartArea1.Name = "ChartArea1";
+            fluxocaixa.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            fluxocaixa.Legends.Add(legend1);
+            fluxocaixa.Location = new Point(37, 168);
+            fluxocaixa.Name = "fluxocaixa";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            fluxocaixa.Series.Add(series1);
+            fluxocaixa.Size = new Size(259, 214);
+            fluxocaixa.TabIndex = 4;
+            fluxocaixa.Text = "chart1";
             // 
             // Form2
             // 
@@ -90,6 +111,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.PapayaWhip;
             ClientSize = new Size(800, 450);
+            Controls.Add(fluxocaixa);
             Controls.Add(btngrafico);
             Controls.Add(btnpdf);
             Controls.Add(label1);
@@ -97,6 +119,7 @@
             Name = "Form2";
             Text = "Form2";
             Load += Form2_Load;
+            ((System.ComponentModel.ISupportInitialize)fluxocaixa).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -107,5 +130,6 @@
         private Label label1;
         private Button btnpdf;
         private Button btngrafico;
+        private System.Windows.Forms.DataVisualization.Charting.Chart fluxocaixa;
     }
 }
