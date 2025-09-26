@@ -43,7 +43,7 @@ namespace progamacaoapp
             fluxocaixa.ChartAreas.Clear();
 
             ChartArea chartArea = new ChartArea("MainArea");
-            fluxocaixa.Chartareas.Add(chartArea);
+            fluxocaixa.ChartAreas.Add(chartArea);
 
             chartArea.AxisX.MajorGrid.Enabled = false;
             chartArea.AxisY.MajorGrid.LineColor = Color.Aquamarine;
@@ -52,7 +52,7 @@ namespace progamacaoapp
             chartArea.AxisX.Title = "Período";
 
             Series seriesEntrada = new Series("Entrada");
-            seriesEntrada.ChartType = SeriesChartType.Column;
+            seriesEntrada.ChartType = SeriesChartType.Line;
             seriesEntrada.Color = Color.Blue;
             seriesEntrada.IsValueShownAsLabel = true;
             seriesEntrada.LabelFormat = "C2";
@@ -71,8 +71,8 @@ namespace progamacaoapp
                 com.getConexao();
                 string query = "Select data_lancamento,valor,tipo from financeiro";
 
-                MySqlDataAdapter adapter = new MySqlDataAdapter(query, com);
-                adapter.fill(dtMoviemntacao);
+                MySqlDataAdapter adapter = new MySqlDataAdapter(query, com.conexaoProjeto);
+                adapter.Fill(dtMoviemntacao);
 
                 ProcessarDadosGraficos(dtMoviemntacao);
 
@@ -93,11 +93,27 @@ namespace progamacaoapp
             var grupos = dados.AsEnumerable().GroupBy(row =>
             {
                 DateTime data = row.Field<DateTime>("data_lancamento");
-            }).OrderBy(global +> global.Key);
-            fluxocaixa.ChartAreas["MainArea"].AxisX.LabelStyle.Format = "dd/mm";
-            decimal entradas = grupos.Where(r=> r.Field<string>("Tipo") == "Entrada").Sum(r=> r.field<decimal>("valor"));
-            fluxocaixa.Series["Entradas"].Points.AddXY(Label, entrada);
+                return data.Date;
+            }).OrderBy(g => g.Key);
 
+            foreach (var grupo in grupos)
+            {
+
+                string label;
+                label = grupo.Key.ToString("dd/MM"); // Ex: 01/07
+                decimal entradas = grupo.Where(r => r.Field<string>
+                ("Tipo") == "Entrada").Sum(r => r.Field<decimal>("Valor"));
+                decimal saidas = grupo.Where(r => r.Field<string>
+                ("Tipo") == "Saida").Sum(r => r.Field<decimal>
+                ("Valor"));
+                decimal saldo = entradas - saidas;
+                fluxocaixa.Series["Entradas"].Points.AddXY(label, entradas);
+                fluxocaixa.Series["Saidas"].Points.AddXY(label,
+                saidas);
+                fluxocaixa.Series["Saldo"].Points.AddXY(label, saldo);
+
+
+            }
         }
 
 
