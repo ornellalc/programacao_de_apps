@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>progamacaoapp</id>
+    <version>1.0.0</version>
+    <authors>progamacaoapp</authors>
+    <description>Package Description</description>
+    <repository type="git" commit="d03dd07892850ab41b03b8b84e4fd5de4435d8bd" />
+    <dependencies>
+      <group targetFramework="net8.0-windows7.0">
+        <dependency id="MySql.Data" version="9.4.0" exclude="Build,Analyzers" />
+        <dependency id="WinForms.DataVisualization" version="1.10.0" exclude="Build,Analyzers" />
+        <dependency id="iTextSharp" version="5.5.13.4" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+    <frameworkReferences>
+      <group targetFramework="net8.0-windows7.0">
+        <frameworkReference name="Microsoft.WindowsDesktop.App.WindowsForms" />
+      </group>
+    </frameworkReferences>
+  </metadata>
+  <files>
+    <file src="C:\Users\Aluno\Documents\GitHub\programacao_de_apps\progamacaoapp\progamacaoapp\bin\Debug\net8.0-windows\progamacaoapp.runtimeconfig.json" target="lib\net8.0-windows7.0\progamacaoapp.runtimeconfig.json" />
+    <file src="C:\Users\Aluno\Documents\GitHub\programacao_de_apps\progamacaoapp\progamacaoapp\bin\Debug\net8.0-windows\progamacaoapp.dll" target="lib\net8.0-windows7.0\progamacaoapp.dll" />
+  </files>
+</package>

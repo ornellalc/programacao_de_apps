@@ -88,6 +88,7 @@
             btngrafico.TabIndex = 3;
             btngrafico.Text = "Gerar Gráfico";
             btngrafico.UseVisualStyleBackColor = false;
+            btngrafico.Click += btngrafico_Click;
             // 
             // fluxocaixa
             // 
@@ -101,7 +102,7 @@
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             fluxocaixa.Series.Add(series1);
-            fluxocaixa.Size = new Size(259, 214);
+            fluxocaixa.Size = new Size(731, 283);
             fluxocaixa.TabIndex = 4;
             fluxocaixa.Text = "chart1";
             // 

@@ -33,6 +33,7 @@ namespace progamacaoapp
         public Form2()
         {
             InitializeComponent();
+            ConfigureChart();
         }
 
 
@@ -57,6 +58,12 @@ namespace progamacaoapp
             seriesEntrada.IsValueShownAsLabel = true;
             seriesEntrada.LabelFormat = "C2";
             fluxocaixa.Series.Add(seriesEntrada);
+            Series seriessaida = new Series("Saida");
+            seriessaida.ChartType = SeriesChartType.Line;
+            seriessaida.Color = Color.Blue;
+            seriessaida.IsValueShownAsLabel = true;
+            seriessaida.LabelFormat = "C2";
+            fluxocaixa.Series.Add(seriessaida);
         }
 
         private void GerarRelatorio()
@@ -90,6 +97,8 @@ namespace progamacaoapp
             {
                 series.Points.Clear();
             }
+            decimal totalentrada = 0;
+            decimal totalsaida = 0;
             var grupos = dados.AsEnumerable().GroupBy(row =>
             {
                 DateTime data = row.Field<DateTime>("data_lancamento");
@@ -102,17 +111,19 @@ namespace progamacaoapp
                 string label;
                 label = grupo.Key.ToString("dd/MM"); // Ex: 01/07
                 decimal entradas = grupo.Where(r => r.Field<string>
-                ("Tipo") == "Entrada").Sum(r => r.Field<decimal>("Valor"));
+                ("tipo") == "entrada").Sum(r => r.Field<decimal>("valor"));
                 decimal saidas = grupo.Where(r => r.Field<string>
-                ("Tipo") == "Saida").Sum(r => r.Field<decimal>
-                ("Valor"));
+                ("tipo") == "saida").Sum(r => r.Field<decimal>
+                ("valor"));
                 decimal saldo = entradas - saidas;
-                fluxocaixa.Series["Entradas"].Points.AddXY(label, entradas);
-                fluxocaixa.Series["Saidas"].Points.AddXY(label,
+                fluxocaixa.Series["Entrada"].Points.AddXY(label, entradas);
+                fluxocaixa.Series["Saida"].Points.AddXY(label,
                 saidas);
                 fluxocaixa.Series["Saldo"].Points.AddXY(label, saldo);
 
-
+                string tituloGrafico = "Fluxo de caixa diario";
+                fluxocaixa.Titles.Clear();
+                fluxocaixa.Titles.Add(tituloGrafico);
             }
         }
 
@@ -159,17 +170,17 @@ namespace progamacaoapp
 
         private void Form2_Load(object sender, EventArgs e)
         {
-
+           
         }
 
         private void btnpdf_Click(object sender, EventArgs e)
         {
             string destinopdf = Path.Combine(Application.StartupPath, "pdf");
-            if (!Directory.Exists(destinopdf));
+            if (!Directory.Exists(destinopdf)) ;
             {
                 Directory.CreateDirectory(destinopdf);
             }
-            
+
 
             string caminhopdf = Path.Combine(destinopdf, "relatoriocliente.pdf");
 
@@ -186,7 +197,7 @@ namespace progamacaoapp
                 conexao conexao = new conexao();
                 conexao.getConexao();
                 DataTable cliente = new DataTable();
-                
+
                 cliente = conexao.obterdados("select * from financeiro");
                 PdfPTable table = new PdfPTable(5);
                 table.WidthPercentage = 100;
@@ -197,7 +208,7 @@ namespace progamacaoapp
                 table.AddCell(new Phrase("data_lancamento"));
                 table.AddCell(new Phrase("pgo"));
 
-                for(int i=0; i<cliente.Rows.Count; i++)
+                for (int i = 0; i < cliente.Rows.Count; i++)
                 {
                     table.AddCell(new Phrase(cliente.Rows[i][1].ToString()));
                     table.AddCell(new Phrase(cliente.Rows[i][2].ToString()));
@@ -218,6 +229,10 @@ namespace progamacaoapp
 
             }
         }
-        
+
+        private void btngrafico_Click(object sender, EventArgs e)
+        {
+            GerarRelatorio();
+        }
     }
 }
